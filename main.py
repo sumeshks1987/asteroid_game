@@ -1,5 +1,6 @@
 import pygame
 from constants import *
+from player import Player
 
 def main():
     pygame.init()
@@ -8,6 +9,9 @@ def main():
     
     clock = pygame.time.Clock()
     dt = 0
+    
+    # Instantiate player in the middle of the screen
+    player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
 
     running = True
     while running:
@@ -18,6 +22,9 @@ def main():
 
         # Fill the screen black
         screen.fill((0, 0, 0))  # RGB black
+        
+        # Draw the player
+        player.draw(screen)
 
         # Update the display
         pygame.display.flip()
