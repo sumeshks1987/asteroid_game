@@ -20,6 +20,9 @@ def main():
             if event.type == pygame.QUIT:
                 running = False  # Exit the loop if the window is closed
 
+        # Update player
+        player.update(dt)
+
         # Fill the screen black
         screen.fill((0, 0, 0))  # RGB black
         
