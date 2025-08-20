@@ -10,8 +10,14 @@ def main():
     clock = pygame.time.Clock()
     dt = 0
     
+    updatables = []
+    drawables = []
+    
     # Instantiate player in the middle of the screen
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2)
+    
+    updatables.append(player)
+    drawables.append(player)
 
     running = True
     while running:
@@ -20,14 +26,16 @@ def main():
             if event.type == pygame.QUIT:
                 running = False  # Exit the loop if the window is closed
 
-        # Update player
-        player.update(dt)
+        # Update all objects
+        for obj in updatables:
+            obj.update(dt)
 
         # Fill the screen black
         screen.fill((0, 0, 0))  # RGB black
         
-        # Draw the player
-        player.draw(screen)
+        # Draw all objects
+        for obj in drawables:
+            obj.draw(screen)
 
         # Update the display
         pygame.display.flip()
