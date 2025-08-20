@@ -21,6 +21,11 @@ class Player(CircleShape):
     def rotate(self, dt):
         self.rotation += PLAYER_TURN_SPEED * dt
         
+    def move(self, dt, forward=True):
+        direction = 1 if forward else -1
+        vector = pygame.Vector2(0, 1).rotate(self.rotation) * direction
+        self.position += vector * PLAYER_SPEED * dt
+        
     # Update method for key input
     def update(self, dt):
         keys = pygame.key.get_pressed()
@@ -29,3 +34,8 @@ class Player(CircleShape):
             self.rotate(-dt)  # Rotate left
         if keys[pygame.K_d]:
             self.rotate(dt)   # Rotate right
+            
+        if keys[pygame.K_w]:
+            self.move(dt, forward=True)   # Move forward
+        if keys[pygame.K_s]:
+            self.move(dt, forward=False)  # Move backward
